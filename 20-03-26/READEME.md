@@ -1,8 +1,8 @@
-## 🚀 API Testing with Postman
+## API Testing with Postman
 
 To test the project APIs using Postman, follow the steps below:
 
-### 📥 Import Collection
+### Import Collection
 
 1. Open **Postman**
 2. Click on the **Import** button (top-left corner)
