@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "11093bae-5c7e-41cb-9f7b-9521377ca227",
+    "name": "20-03-26 assignment",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38103355"
+  },
+  "item": [
+    {
+      "name": "save",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "// {\r\n//   \"employeeName\": \"Souro\",\r\n//   \"email\": \"test@gmail.com\",\r\n//   \"phone\": \"1234567890\",\r\n//   \"gender\": \"Male\",\r\n//   \"designation\": \"Developer\",\r\n//   \"salary\": 50000,\r\n//   \"dateOfJoining\": \"2024-01-01\",\r\n//   \"address\": {\r\n//     \"street\": \"ABC Road\",\r\n//     \"city\": \"Kolkata\",\r\n//     \"state\": \"WB\",\r\n//     \"country\": \"India\",\r\n//     \"pincode\": 700001\r\n//   }\r\n// }\r\n\r\n{\r\n  \"employeeName\": \"Rohit Sharma\",\r\n  \"email\": \"rohit.sharma@gmail.com\",\r\n  \"phone\": \"9876543210\",\r\n  \"gender\": \"Male\",\r\n  \"designation\": \"Senior Developer\",\r\n  \"salary\": 85000,\r\n  \"dateOfJoining\": \"2023-06-15\",\r\n  \"address\": {\r\n    \"street\": \"MG Road\",\r\n    \"city\": \"Mumbai\",\r\n    \"state\": \"Maharashtra\",\r\n    \"country\": \"India\",\r\n    \"pincode\": 400001\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employee/save",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employee",
+            "save"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get-all",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/employee/get-all",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employee",
+            "get-all"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "get-by-id",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/employee/get-by-id/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employee",
+            "get-by-id",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "update",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"employeeName\": \"Priya Sen Updated\",\r\n  \"email\": \"priya.updated@gmail.com\",\r\n  \"phone\": \"9988776655\",\r\n  \"gender\": \"Female\",\r\n  \"designation\": \"Senior HR Manager\",\r\n  \"salary\": 75000,\r\n  \"dateOfJoining\": \"2022-11-20\",\r\n  \"address\": {\r\n    \"street\": \"New Town\",\r\n    \"city\": \"Kolkata\",\r\n    \"state\": \"West Bengal\",\r\n    \"country\": \"India\",\r\n    \"pincode\": 700156\r\n  }\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/employee/update/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employee",
+            "update",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/employee/delete/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "employee",
+            "delete",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
