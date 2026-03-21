@@ -23,7 +23,7 @@ public class Address {
 
     private String country;
 
-    private int pincode;
+    private Integer pincode;
 
 
 }

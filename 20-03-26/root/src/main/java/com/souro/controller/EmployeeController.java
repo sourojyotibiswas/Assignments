@@ -3,6 +3,7 @@ package com.souro.controller;
 import com.souro.dto.EmployeeDTO;
 import com.souro.entity.Employee;
 import com.souro.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String createEmployee(@RequestBody EmployeeDTO dto) {
+    public String createEmployee(@Valid @RequestBody EmployeeDTO dto) {
         return employeeService.saveEmployee(dto);
     }
 
@@ -34,7 +35,7 @@ public class EmployeeController {
 
     @PutMapping("/update/{id}")
     public String updateEmployee(@PathVariable int id,
-                                 @RequestBody EmployeeDTO dto) {
+                                 @Valid @RequestBody EmployeeDTO dto) {
         return employeeService.updateEmployee(id, dto);
     }
 

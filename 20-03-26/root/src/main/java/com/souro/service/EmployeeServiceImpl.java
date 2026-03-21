@@ -4,6 +4,7 @@ import com.souro.dto.AddressDTO;
 import com.souro.dto.EmployeeDTO;
 import com.souro.entity.Address;
 import com.souro.entity.Employee;
+import com.souro.exception.EmployeeNotFoundException;
 import com.souro.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
@@ -86,76 +87,72 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee getEmployeeById(int id) {
-        Optional<Employee> employee = employeeRepository.findById(id);
-        if(employee.isPresent()) return employee.get();
-        return null;
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
     }
 
     @Override
     public String updateEmployee(int id, EmployeeDTO dto) {
         Optional<Employee> optionalEmployee = employeeRepository.findById(id);
 
-        if (optionalEmployee.isPresent()) {
-            Employee employee = optionalEmployee.get();
+        Employee employee = optionalEmployee.orElseThrow(() -> new EmployeeNotFoundException(id));
 
-            if (dto.getEmployeeName() != null) {
-                employee.setEmployeeName(dto.getEmployeeName());
-            }
-            if (dto.getEmail() != null) {
-                employee.setEmail(dto.getEmail());
-            }
-            if (dto.getPhone() != null) {
-                employee.setPhone(dto.getPhone());
-            }
-            if (dto.getGender() != null) {
-                employee.setGender(dto.getGender());
-            }
-            if (dto.getDesignation() != null) {
-                employee.setDesignation(dto.getDesignation());
-            }
-            if (dto.getSalary() > 0) {
-                employee.setSalary(dto.getSalary());
-            }
-            if (dto.getDateOfJoining() != null) {
-                employee.setDateOfJoining(dto.getDateOfJoining());
-            }
-            if (dto.getAddress() != null) {
-                Address address = employee.getAddress();
-
-                if (address == null) {
-                    address = new Address();
-                }
-                if (dto.getAddress().getStreet() != null) {
-                    address.setStreet(dto.getAddress().getStreet());
-                }
-                if (dto.getAddress().getCity() != null) {
-                    address.setCity(dto.getAddress().getCity());
-                }
-                if (dto.getAddress().getState() != null) {
-                    address.setState(dto.getAddress().getState());
-                }
-                if (dto.getAddress().getCountry() != null) {
-                    address.setCountry(dto.getAddress().getCountry());
-                }
-                if (dto.getAddress().getPincode() != 0) {
-                    address.setPincode(dto.getAddress().getPincode());
-                }
-
-                employee.setAddress(address);
-            }
-
-            int employeeId = employeeRepository.save(employee).getId();
-            return "Employee of id " + employeeId + " updated successfully";
+        if (dto.getEmployeeName() != null) {
+            employee.setEmployeeName(dto.getEmployeeName());
         }
-        return "Employee not found";
+        if (dto.getEmail() != null) {
+            employee.setEmail(dto.getEmail());
+        }
+        if (dto.getPhone() != null) {
+            employee.setPhone(dto.getPhone());
+        }
+        if (dto.getGender() != null) {
+            employee.setGender(dto.getGender());
+        }
+        if (dto.getDesignation() != null) {
+            employee.setDesignation(dto.getDesignation());
+        }
+        if (dto.getSalary() > 0) {
+            employee.setSalary(dto.getSalary());
+        }
+        if (dto.getDateOfJoining() != null) {
+            employee.setDateOfJoining(dto.getDateOfJoining());
+        }
+        if (dto.getAddress() != null) {
+            Address address = employee.getAddress();
+
+            if (address == null) {
+                address = new Address();
+            }
+            if (dto.getAddress().getStreet() != null) {
+                address.setStreet(dto.getAddress().getStreet());
+            }
+            if (dto.getAddress().getCity() != null) {
+                address.setCity(dto.getAddress().getCity());
+            }
+            if (dto.getAddress().getState() != null) {
+                address.setState(dto.getAddress().getState());
+            }
+            if (dto.getAddress().getCountry() != null) {
+                address.setCountry(dto.getAddress().getCountry());
+            }
+            if (dto.getAddress().getPincode() != 0) {
+                address.setPincode(dto.getAddress().getPincode());
+            }
+
+            employee.setAddress(address);
+        }
+
+        int employeeId = employeeRepository.save(employee).getId();
+        return "Employee of id " + employeeId + " updated successfully";
     }
 
     @Override
     public String deleteEmployee(int id) {
-        if (employeeRepository.existsById(id)) {
-            employeeRepository.deleteById(id);
-            return "Employee deleted successfully";
+        if (!employeeRepository.existsById(id)) {
+            throw new EmployeeNotFoundException(id);
         }
-        return "Employee not found";
+        employeeRepository.deleteById(id);
+        return "Employee deleted successfully";
     }
 }

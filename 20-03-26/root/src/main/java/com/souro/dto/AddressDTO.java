@@ -19,5 +19,5 @@ public class AddressDTO {
 
     @Min(100000)
     @Max(999999)
-    private int pincode;
+    private Integer pincode;
 }
